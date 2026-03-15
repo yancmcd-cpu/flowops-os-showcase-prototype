@@ -1,0 +1,296 @@
+.opsSection {
+    background: var(--bg-surface-light);
+    border-top: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+@media (max-width: 992px) {
+    .layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+}
+
+.contextPanel h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+}
+
+.eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+.operatorProfile {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+}
+
+.avatarWrapper {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.avatarImg {
+    object-fit: cover;
+}
+
+.roleDesc h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--accent-secondary);
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-full);
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.roleDesc p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Visual Flow Sequence */
+.visualFlow {
+    position: relative;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.flowRow {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.inputGroup,
+.outputGroup {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    justify-content: center;
+}
+
+.node {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all var(--transition-normal);
+}
+
+.node:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.animateFloat1 {
+    animation: float 4s ease-in-out infinite;
+}
+
+.animateFloat2 {
+    animation: float 4.5s ease-in-out infinite 1s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.connectionArrows {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    height: 60px;
+    position: relative;
+}
+
+.flowingLine {
+    width: 2px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.flowingLine::after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: var(--accent-base);
+    box-shadow: 0 0 10px var(--accent-base);
+    animation: flowDown 2s infinite linear;
+}
+
+@keyframes flowDown {
+    0% {
+        top: -20px;
+    }
+
+    100% {
+        top: 100%;
+    }
+}
+
+.arrowIcon {
+    color: var(--text-tertiary);
+    transform: rotate(90deg);
+}
+
+.coreSystem {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.coreSystem::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: var(--radius-md);
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.1) inset;
+    pointer-events: none;
+}
+
+.systemIcon {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.coreSystem h4 {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.databaseCards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+
+.dbCard {
+    background: var(--bg-base);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.iconPulse {
+    animation: pulseColor 3s infinite;
+}
+
+@keyframes pulseColor {
+    0% {
+        color: var(--text-primary);
+    }
+
+    50% {
+        color: var(--accent-success);
+    }
+
+    100% {
+        color: var(--text-primary);
+    }
+}
+
+@media (max-width: 480px) {
+
+    .inputGroup,
+    .outputGroup {
+        flex-direction: column;
+    }
+
+    .databaseCards {
+        grid-template-columns: 1fr;
+    }
+}

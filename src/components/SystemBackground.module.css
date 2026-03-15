@@ -1,0 +1,101 @@
+.container {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.gridOverlay {
+    position: absolute;
+    inset: -50%;
+    background-image:
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    transform: perspective(1000px) rotateX(60deg) scale(2);
+    transform-origin: center top;
+    animation: gridDrift 40s linear infinite;
+}
+
+@keyframes gridDrift {
+    0% {
+        transform: perspective(1000px) rotateX(60deg) scale(2) translateY(0);
+    }
+
+    100% {
+        transform: perspective(1000px) rotateX(60deg) scale(2) translateY(60px);
+    }
+}
+
+.svgLayer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(1px);
+}
+
+.line {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.06);
+    stroke-width: 1;
+    stroke-dasharray: 4 4;
+    animation: dashDrift 20s linear infinite;
+}
+
+@keyframes dashDrift {
+    to {
+        stroke-dashoffset: -100;
+    }
+}
+
+.nodeBase {
+    fill: rgba(255, 255, 255, 0.15);
+}
+
+.nodeActive {
+    fill: var(--accent-base);
+    opacity: 0.5;
+    filter: drop-shadow(0 0 10px var(--accent-base));
+}
+
+.nodeAccent {
+    fill: var(--accent-success);
+    opacity: 0.5;
+    filter: drop-shadow(0 0 10px var(--accent-success));
+}
+
+.nodeCore {
+    fill: var(--accent-secondary);
+    opacity: 0.7;
+    filter: drop-shadow(0 0 15px var(--accent-secondary));
+    animation: corePulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes corePulse {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.4;
+    }
+
+    100% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+.packet1 {
+    fill: var(--accent-base);
+    filter: drop-shadow(0 0 6px var(--accent-base));
+}
+
+.packet2 {
+    fill: var(--accent-success);
+    filter: drop-shadow(0 0 6px var(--accent-success));
+}
+
+.packet3 {
+    fill: var(--accent-tertiary);
+    filter: drop-shadow(0 0 6px var(--accent-tertiary));
+}

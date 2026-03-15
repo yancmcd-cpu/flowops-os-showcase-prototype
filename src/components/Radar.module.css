@@ -1,0 +1,927 @@
+﻿.radarSection {
+    position: relative;
+    overflow: hidden;
+    padding: 5.2rem 0 4.8rem;
+    background: #000;
+    border-top: none;
+    --color-growth: #10b981;
+    --color-conversion: #06b6d4;
+    --color-demand: #6366f1;
+    --color-protection: #8b5cf6;
+}
+
+.containerExt {
+    max-width: 1380px;
+}
+
+.header {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.radarIconWrap {
+    width: 62px;
+    height: 62px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.035);
+    color: #06b6d4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.95rem;
+    border: 1px solid rgba(6, 182, 212, 0.38);
+    box-shadow: 0 0 30px rgba(6, 182, 212, 0.15);
+}
+
+.header h2 {
+    font-size: clamp(2.9rem, 4.3vw, 4.25rem);
+    line-height: 1.03;
+    letter-spacing: -0.05em;
+    margin: 0 0 0.78rem;
+}
+
+.header p {
+    max-width: 720px;
+    margin: 0;
+    color: rgba(226, 232, 240, 0.72);
+    line-height: 1.52;
+    font-size: 1rem;
+}
+
+.radarVisualization {
+    display: flex;
+    flex-direction: column;
+    gap: 1.7rem;
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+.sourcesLayer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+    width: 100%;
+}
+
+.sourcesLabel {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.54);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.nodesWrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    max-width: 1040px;
+}
+
+.sourceNode {
+    background: rgba(10, 10, 10, 0.58);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0.52rem 0.95rem;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.76rem;
+    color: rgba(255, 255, 255, 0.74);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+    position: relative;
+    overflow: hidden;
+}
+
+.sourceNode::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+.sourceNode:hover {
+    transform: translateY(-2px) scale(1.03);
+    background: rgba(18, 20, 30, 0.78);
+    color: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28), 0 0 16px var(--source-accent-glow, rgba(255, 255, 255, 0.05));
+    border-color: var(--source-accent-color, rgba(255, 255, 255, 0.2));
+}
+
+.sourceNode svg {
+    color: var(--source-accent-color, rgba(255, 255, 255, 0.7));
+}
+
+.source_industry {
+    --source-accent-color: var(--color-conversion);
+    --source-accent-glow: rgba(6, 182, 212, 0.18);
+}
+
+.source_feedback {
+    --source-accent-color: var(--color-demand);
+    --source-accent-glow: rgba(99, 102, 241, 0.18);
+}
+
+.source_workflows {
+    --source-accent-color: var(--color-growth);
+    --source-accent-glow: rgba(16, 185, 129, 0.18);
+}
+
+.source_market {
+    --source-accent-color: #60a5fa;
+    --source-accent-glow: rgba(96, 165, 250, 0.18);
+}
+
+.animateFloat1 {
+    animation: float 4s ease-in-out infinite;
+}
+
+.animateFloat2 {
+    animation: float 3.6s ease-in-out infinite 0.5s;
+}
+
+.animateFloat3 {
+    animation: float 4.3s ease-in-out infinite 1s;
+}
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.mainSystemPane {
+    display: grid;
+    grid-template-columns: 270px 180px 360px 90px 360px;
+    align-items: center;
+    justify-content: center;
+    min-height: 520px;
+    margin: 0 auto;
+}
+
+.signalColumn,
+.cardColumn {
+    min-width: 0;
+    width: 100%;
+}
+
+.signalColumn {
+    justify-self: end;
+}
+
+.cardColumn {
+    justify-self: start;
+}
+
+.signalCardShell,
+.opportunityCardContainer {
+    position: relative;
+    width: 100%;
+}
+
+.signalCardShell {
+    min-height: 220px;
+}
+
+.opportunityCardContainer {
+    min-height: 300px;
+}
+
+.signalCard,
+.ideaCard {
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(10, 14, 24, 0.9), rgba(6, 8, 14, 0.96));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: opacity 0.55s ease, transform 0.55s ease, filter 0.55s ease;
+}
+
+.signalCard {
+    padding: 0.95rem 0.95rem 0.9rem;
+}
+
+.ideaCard {
+    padding: 1.15rem 1.15rem 1.1rem;
+}
+
+.signalCardActive,
+.cardActive {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+    pointer-events: auto;
+}
+
+.signalCardHidden,
+.cardHidden {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+    filter: blur(10px);
+    pointer-events: none;
+}
+
+.feedHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-bottom: 0.75rem;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 0.73rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+.feedHeader svg {
+    color: #38bdf8;
+}
+
+.signalItemHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 0.42rem;
+    margin-bottom: 0.55rem;
+}
+
+.signalSource {
+    font-size: 0.68rem;
+    color: rgba(255, 255, 255, 0.52);
+    font-weight: 600;
+}
+
+.signalTypeBadge {
+    align-self: flex-start;
+    padding: 0.22rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.6rem;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.badge_growth {
+    color: #6ee7b7;
+    background: rgba(16, 185, 129, 0.12);
+}
+
+.badge_conversion {
+    color: #67e8f9;
+    background: rgba(6, 182, 212, 0.12);
+}
+
+.badge_demand {
+    color: #a5b4fc;
+    background: rgba(99, 102, 241, 0.12);
+}
+
+.badge_protection {
+    color: #c4b5fd;
+    background: rgba(139, 92, 246, 0.12);
+}
+
+.signalText {
+    margin: 0;
+    color: rgba(226, 232, 240, 0.74);
+    font-size: 0.8rem;
+    line-height: 1.56;
+}
+
+.signal_growth {
+    border-color: rgba(16, 185, 129, 0.16);
+}
+
+.signal_conversion {
+    border-color: rgba(6, 182, 212, 0.18);
+}
+
+.signal_demand {
+    border-color: rgba(99, 102, 241, 0.18);
+}
+
+.signal_protection {
+    border-color: rgba(139, 92, 246, 0.16);
+}
+
+.radarCoreWrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    width: 360px;
+}
+
+.signalConnector {
+    position: relative;
+    align-self: center;
+    width: 100%;
+    height: 24px;
+}
+
+.signalConnectorLeft,
+.signalConnectorRight {
+    justify-self: stretch;
+}
+
+.connectorLine {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    transform: translateY(-50%);
+    background: linear-gradient(90deg, rgba(6, 182, 212, 0.08) 0%, rgba(96, 165, 250, 0.86) 50%, rgba(6, 182, 212, 0.08) 100%);
+    box-shadow: 0 0 16px rgba(6, 182, 212, 0.16);
+}
+
+.connectorLine::after {
+    content: '';
+    position: absolute;
+    inset: -5px 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.9) 50%, transparent 100%);
+    background-size: 140px 100%;
+    background-repeat: no-repeat;
+    animation: connectorTravel 2.5s linear infinite;
+    opacity: 0.88;
+}
+
+.connectorPulseLeft,
+.connectorPulseRight {
+    position: absolute;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    background: #7dd3fc;
+    box-shadow: 0 0 12px rgba(125, 211, 252, 0.84);
+    animation: connectorPulseAnim 2.2s ease-in-out infinite;
+}
+
+.connectorPulseLeft {
+    right: -1px;
+}
+
+.connectorPulseRight {
+    left: -1px;
+}
+
+@keyframes connectorTravel {
+    0% {
+        background-position: -140px 0;
+        opacity: 0;
+    }
+    18% {
+        opacity: 0.95;
+    }
+    100% {
+        background-position: 220px 0;
+        opacity: 0;
+    }
+}
+
+@keyframes connectorPulseAnim {
+    0%,
+    100% {
+        transform: translateY(-50%) scale(1);
+        opacity: 0.75;
+    }
+    50% {
+        transform: translateY(-50%) scale(1.35);
+        opacity: 1;
+    }
+}
+
+.radarCore {
+    position: relative;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(9, 22, 34, 0.92) 0%, rgba(5, 10, 18, 0.92) 62%, rgba(2, 4, 8, 0.96) 100%);
+    border: 1px solid rgba(125, 211, 252, 0.14);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 54px rgba(0, 0, 0, 0.58), inset 0 0 36px rgba(96, 165, 250, 0.04);
+}
+
+.radarCore::before {
+    content: '';
+    position: absolute;
+    inset: 18px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, rgba(6, 182, 212, 0.02) 38%, transparent 72%);
+    filter: blur(6px);
+}
+
+.radarRings div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px dashed rgba(6, 182, 212, 0.16);
+}
+
+.ring1 {
+    width: 116px;
+    height: 116px;
+}
+
+.ring2 {
+    width: 220px;
+    height: 220px;
+}
+
+.ring3 {
+    width: 324px;
+    height: 324px;
+    border-style: solid !important;
+    border-color: rgba(96, 165, 250, 0.18);
+}
+
+.radarSweep {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    top: 0;
+    left: 50%;
+    transform-origin: bottom left;
+    background: linear-gradient(90deg, rgba(6, 182, 212, 0.34) 0%, rgba(96, 165, 250, 0.18) 34%, transparent 100%);
+    border-left: 2px solid rgba(125, 211, 252, 0.82);
+    animation: sweep 4.2s linear infinite;
+    z-index: 2;
+}
+
+@keyframes sweep {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.coreCenter {
+    position: relative;
+    z-index: 3;
+    width: 94px;
+    height: 94px;
+    background: rgba(12, 18, 28, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 34px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+.coreCenter::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.14) 0%, transparent 72%);
+    animation: corePulse 4s infinite ease-in-out;
+}
+
+@keyframes corePulse {
+    0%, 100% {
+        transform: scale(0.82);
+        opacity: 0.3;
+    }
+    50% {
+        transform: scale(1.12);
+        opacity: 0.62;
+    }
+}
+
+.coreLabel {
+    font-size: 0.58rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+    letter-spacing: 0.1em;
+}
+
+.dataHit {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    background: #38bdf8;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.9);
+    z-index: 3;
+    opacity: 0;
+}
+
+.hit1 {
+    top: 30%;
+    left: 25%;
+    animation: flashHit 4.2s infinite 3.5s;
+}
+
+.hit2 {
+    top: 64%;
+    left: 71%;
+    animation: flashHit 4.2s infinite 1.45s;
+}
+
+.hit3 {
+    top: 22%;
+    left: 62%;
+    animation: flashHit 4.2s infinite 0.55s;
+}
+
+@keyframes flashHit {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    10% {
+        opacity: 1;
+        transform: scale(1.55);
+    }
+    20% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.ideaHeader {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.8rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.ideaHeaderLeft {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    min-width: 0;
+    color: rgba(255, 255, 255, 0.96);
+    font-size: 0.88rem;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.ideaHeaderLeft span {
+    display: block;
+}
+
+.zapIcon {
+    flex-shrink: 0;
+}
+
+.tagScore {
+    flex-shrink: 0;
+    padding: 0.34rem 0.58rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.74);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+}
+
+.cardContentLandscape,
+.cardDetails {
+    height: calc(100% - 3.2rem);
+}
+
+.cardDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.cardSection {
+    display: flex;
+    flex-direction: column;
+    gap: 0.38rem;
+}
+
+.cardLabel {
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(255, 255, 255, 0.42);
+    font-weight: 700;
+}
+
+.cardInsight,
+.cardSystem {
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: rgba(226, 232, 240, 0.78);
+}
+
+.card_growth {
+    border-color: rgba(16, 185, 129, 0.18);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.42), 0 0 32px rgba(16, 185, 129, 0.08);
+}
+
+.card_conversion {
+    border-color: rgba(6, 182, 212, 0.2);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.42), 0 0 32px rgba(6, 182, 212, 0.1);
+}
+
+.card_demand {
+    border-color: rgba(99, 102, 241, 0.2);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.42), 0 0 32px rgba(99, 102, 241, 0.1);
+}
+
+.card_protection {
+    border-color: rgba(139, 92, 246, 0.18);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.42), 0 0 32px rgba(139, 92, 246, 0.08);
+}
+
+@media (max-width: 1180px) {
+    .mainSystemPane {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .signalColumn,
+    .cardColumn {
+        max-width: 620px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .signalCardShell,
+    .opportunityCardContainer {
+        min-height: 240px;
+    }
+
+    .signalConnectorLeft,
+    .signalConnectorRight {
+        display: none;
+    }
+
+    .radarCore {
+        width: 320px;
+        height: 320px;
+    }
+
+    .ring3 {
+        width: 286px;
+        height: 286px;
+    }
+}
+
+@media (max-width: 760px) {
+    .radarSection {
+        padding: 4.4rem 0 4rem;
+    }
+
+    .header {
+        margin-bottom: 1.7rem;
+    }
+
+    .header h2 {
+        font-size: 2.35rem;
+    }
+
+    .header p {
+        font-size: 0.96rem;
+    }
+
+    .nodesWrapper {
+        justify-content: center;
+    }
+
+    .sourceNode {
+        font-size: 0.72rem;
+    }
+
+    .radarCore {
+        width: 280px;
+        height: 280px;
+    }
+
+    .ring1 {
+        width: 96px;
+        height: 96px;
+    }
+
+    .ring2 {
+        width: 176px;
+        height: 176px;
+    }
+
+    .ring3 {
+        width: 248px;
+        height: 248px;
+    }
+}
+
+.ideaCard {
+    background: linear-gradient(180deg, rgba(14, 22, 38, 0.98), rgba(8, 12, 22, 0.99));
+    border: 1px solid rgba(96, 165, 250, 0.28);
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.52), 0 0 38px rgba(59, 130, 246, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.signalCard {
+    background: linear-gradient(180deg, rgba(9, 12, 20, 0.84), rgba(6, 8, 14, 0.92));
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.32);
+}
+
+.ideaHeader {
+    align-items: flex-start;
+    margin-bottom: 1.05rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.ideaHeaderLeft {
+    gap: 0.72rem;
+    color: #f8fbff;
+    font-size: 1.02rem;
+    font-weight: 800;
+    line-height: 1.28;
+    text-shadow: 0 0 18px rgba(96, 165, 250, 0.08);
+}
+
+.zapIcon {
+    color: #7dd3fc;
+    filter: drop-shadow(0 0 10px rgba(125, 211, 252, 0.42));
+}
+
+.tagScore {
+    padding: 0.42rem 0.76rem;
+    background: linear-gradient(180deg, rgba(59, 130, 246, 0.28), rgba(56, 189, 248, 0.14));
+    color: #f8fbff;
+    border: 1px solid rgba(125, 211, 252, 0.32);
+    box-shadow: 0 0 24px rgba(59, 130, 246, 0.22);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+}
+
+.cardSection {
+    gap: 0.42rem;
+    padding: 0.76rem 0.82rem;
+    border-radius: 16px;
+    background: linear-gradient(180deg, rgba(59, 130, 246, 0.07), rgba(255, 255, 255, 0.025));
+    border: 1px solid rgba(125, 211, 252, 0.12);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.cardLabel {
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    color: #67e8f9;
+    font-weight: 800;
+    text-shadow: 0 0 14px rgba(34, 211, 238, 0.16);
+}
+
+.cardInsight,
+.cardSystem {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: rgba(248, 250, 252, 0.92);
+}
+
+.feedHeader {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+}
+
+.signalText {
+    color: rgba(226, 232, 240, 0.62);
+    font-size: 0.78rem;
+    line-height: 1.52;
+}
+
+.card_growth {
+    border-color: rgba(16, 185, 129, 0.26);
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.52), 0 0 40px rgba(16, 185, 129, 0.14);
+}
+
+.card_conversion {
+    border-color: rgba(6, 182, 212, 0.28);
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.52), 0 0 42px rgba(6, 182, 212, 0.16);
+}
+
+.card_demand {
+    border-color: rgba(99, 102, 241, 0.28);
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.52), 0 0 42px rgba(99, 102, 241, 0.16);
+}
+
+.card_protection {
+    border-color: rgba(139, 92, 246, 0.26);
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.52), 0 0 40px rgba(139, 92, 246, 0.14);
+}
+
+
+.mainSystemPane {
+    grid-template-columns: 238px 360px 388px;
+    gap: 52px;
+    justify-content: center;
+    transform: translateX(28px);
+}
+
+.signalColumn {
+    justify-self: end;
+    width: 100%;
+    max-width: 238px;
+}
+
+.cardColumn {
+    justify-self: start;
+    width: 100%;
+    max-width: 388px;
+}
+
+.signalCardShell {
+    min-height: 210px;
+}
+
+.opportunityCardContainer {
+    min-height: 352px;
+}
+
+.ideaCard {
+    padding-bottom: 1.25rem;
+}
+
+.cardContentLandscape,
+.cardDetails {
+    height: auto;
+}
+
+.cardDetails {
+    gap: 0.85rem;
+}
+
+.radarCoreWrap {
+    width: 360px;
+    min-width: 360px;
+    height: 360px;
+    margin: 0 auto;
+}
+
+.signalConnectorLeft {
+    display: none;
+}
+
+.signalConnectorRight {
+    display: none;
+}
+
+@media (max-width: 1180px) {
+    .signalCardShell {
+        min-height: 220px;
+    }
+
+    .opportunityCardContainer {
+        min-height: 360px;
+    }
+}
+
+.radarCore {
+    width: 360px !important;
+    min-width: 360px;
+    height: 360px !important;
+    min-height: 360px;
+    aspect-ratio: 1 / 1;
+    flex: 0 0 360px;
+    border-radius: 50%;
+}
+
+
+
+
+

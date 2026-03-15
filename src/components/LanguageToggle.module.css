@@ -1,0 +1,50 @@
+.toggle {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    display: flex;
+    align-items: center;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-full);
+    padding: 0.25rem 0.5rem;
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    z-index: 50;
+    transition: all 0.2s ease;
+}
+
+.toggle:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.option {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-full);
+    transition: all 0.2s ease;
+    opacity: 0.6;
+}
+
+.active {
+    color: var(--text-primary);
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.divider {
+    width: 1px;
+    height: 12px;
+    background: var(--border-color);
+    margin: 0 0.25rem;
+}
+
+@media (max-width: 768px) {
+    .toggle {
+        top: 1rem;
+        right: 1rem;
+    }
+}

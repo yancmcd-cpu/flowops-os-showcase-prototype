@@ -1,0 +1,909 @@
+﻿.section {
+  position: relative;
+  min-height: 185vh;
+  padding: clamp(6rem, 10vw, 8.5rem) 0 clamp(6rem, 9vw, 8rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background:
+    radial-gradient(circle at 24% 38%, rgba(99, 102, 241, 0.08), transparent 34%),
+    radial-gradient(circle at 74% 58%, rgba(34, 211, 238, 0.06), transparent 36%),
+    linear-gradient(180deg, rgba(1, 2, 4, 1), rgba(3, 5, 11, 1));
+  color: #f8fafc;
+}
+
+.container {
+  width: min(1360px, calc(100vw - 88px));
+  margin: 0 auto;
+}
+
+.sectionHeader {
+  max-width: 840px;
+  margin: 0 auto clamp(3.4rem, 5vw, 4.8rem);
+  text-align: center;
+}
+
+.sectionEyebrow,
+.panelEyebrow,
+.blockHeader,
+.roleSpotlightEyebrow {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.sectionEyebrow {
+  color: #818cf8;
+  margin-bottom: 1rem;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: clamp(3rem, 5.6vw, 5.35rem);
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+}
+
+.sectionDescription {
+  margin: 1.25rem auto 0;
+  max-width: 780px;
+  color: rgba(226, 232, 240, 0.72);
+  line-height: 1.6;
+  font-size: 1.04rem;
+}
+
+.sectionBody {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.75rem, 2.8vw, 2.35rem);
+  align-items: stretch;
+}
+
+.roleMapShell {
+  position: relative;
+  width: min(980px, 100%);
+  margin: 0 auto;
+}
+
+.roleMapLabel,
+.workflowPanelHeader {
+  margin-bottom: 1.3rem;
+}
+
+.panelEyebrow {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.panelSupport {
+  margin: 0.72rem 0 0;
+  max-width: 560px;
+  color: rgba(203, 213, 225, 0.64);
+  line-height: 1.6;
+  font-size: 0.98rem;
+}
+
+.roleMap {
+  position: relative;
+  width: 100%;
+  min-height: 780px;
+  aspect-ratio: 1 / 1;
+  border-radius: 36px;
+  background: linear-gradient(180deg, rgba(9, 12, 22, 0.66), rgba(3, 5, 10, 0.32));
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 28px 70px rgba(0, 0, 0, 0.18);
+}
+
+.roleMap::before,
+.roleMap::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.roleMap::before {
+  inset: 10% 14%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.09), transparent 62%);
+  filter: blur(18px);
+}
+
+.roleMap::after {
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 56px 56px;
+  opacity: 0.12;
+  mask-image: radial-gradient(circle at 50% 54%, black 35%, transparent 78%);
+}
+
+.roleConnections {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.connectionLineTrack {
+  stroke: rgba(255, 255, 255, 0.06);
+  stroke-width: 0.74;
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+}
+
+.connectionLine {
+  stroke: rgba(148, 163, 184, 0.18);
+  stroke-width: 0.26;
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+  transition: stroke 0.3s ease, stroke-opacity 0.3s ease, filter 0.3s ease;
+}
+
+.connectionLineActive {
+  stroke: var(--role-accent);
+  stroke-opacity: 0.72;
+  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--role-accent) 35%, transparent));
+}
+
+.solutionHub {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hubPulseRing {
+  position: absolute;
+  inset: -18px;
+  border-radius: 50%;
+  border: 1px solid rgba(103, 232, 249, 0.18);
+  animation: hubPulse 0.9s ease-out both;
+}
+
+.hubCore {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 30%, rgba(129, 140, 248, 0.4), transparent 38%),
+    linear-gradient(180deg, rgba(18, 25, 41, 0.97), rgba(6, 9, 17, 0.99));
+  border: 1px solid rgba(129, 140, 248, 0.28);
+  box-shadow: 0 0 64px rgba(99, 102, 241, 0.22), inset 0 0 42px rgba(34, 211, 238, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hubCore::before,
+.hubCore::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+
+.hubCore::before {
+  inset: 10px;
+  border: 1px solid rgba(34, 211, 238, 0.14);
+}
+
+.hubCore::after {
+  inset: -13px;
+  border: 1px solid rgba(129, 140, 248, 0.12);
+  animation: hubOrbit 18s linear infinite;
+}
+
+.hubLabelTop,
+.hubLabelBottom {
+  display: block;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hubLabelTop {
+  font-size: 0.78rem;
+  color: rgba(226, 232, 240, 0.86);
+}
+
+.hubLabelBottom {
+  margin-top: 0.4rem;
+  font-size: 1rem;
+  color: #67e8f9;
+}
+
+.roleNode {
+  position: absolute;
+  width: 122px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  text-align: center;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.35s ease, opacity 0.35s ease, filter 0.35s ease;
+}
+
+.roleThumbFrame {
+  position: relative;
+  width: 78px;
+  height: 78px;
+  padding: 6px;
+  border-radius: 26px;
+  background: linear-gradient(180deg, rgba(18, 24, 38, 0.98), rgba(8, 11, 20, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+.roleThumbFrame::before,
+.roleThumbFrame::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.roleThumbFrame::before {
+  inset: 3px;
+  border-radius: 21px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.roleThumbFrame::after {
+  inset: -1px;
+  border-radius: 26px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 36%, transparent 68%, rgba(103, 232, 249, 0.08));
+  opacity: 0.8;
+}
+
+.roleThumb {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+  display: block;
+}
+
+.roleMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.24rem;
+}
+
+.roleName {
+  font-size: 0.86rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(248, 250, 252, 0.92);
+}
+
+.roleTitle {
+  font-size: 0.66rem;
+  line-height: 1.45;
+  color: rgba(148, 163, 184, 0.62);
+}
+
+.roleNode:not(.roleNodeActive) {
+  opacity: 0.62;
+  filter: saturate(0.8);
+}
+
+.roleNode:hover,
+.roleNode:focus-visible {
+  transform: translate(-50%, -50%) scale(1.035);
+}
+
+.roleNode:focus-visible,
+.workflowTab:focus-visible,
+.activeRoleChip:focus-visible,
+.roleSpotlightClose:focus-visible {
+  outline: 2px solid rgba(103, 232, 249, 0.6);
+  outline-offset: 4px;
+}
+
+.roleNodeActive {
+  transform: translate(-50%, -50%) scale(1.04);
+}
+
+.roleNodeActive .roleThumbFrame {
+  border-color: color-mix(in srgb, var(--role-accent) 60%, rgba(255,255,255,0.22));
+  box-shadow: 0 0 26px color-mix(in srgb, var(--role-accent) 20%, transparent), 0 18px 34px rgba(0, 0, 0, 0.42);
+}
+
+.roleNodeActive .roleName {
+  color: white;
+}
+
+.roleNodeActive .roleTitle {
+  color: color-mix(in srgb, var(--role-accent) 72%, white 20%);
+}
+
+.roleNodeSelected {
+  z-index: 3;
+}
+
+.roleNodeSelected .roleThumbFrame {
+  border-color: color-mix(in srgb, var(--role-accent) 72%, white 16%);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--role-accent) 34%, transparent), 0 0 28px color-mix(in srgb, var(--role-accent) 28%, transparent), 0 18px 34px rgba(0, 0, 0, 0.42);
+}
+
+.roleSpotlight {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 1.6rem;
+}
+
+.roleSpotlightBackdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: linear-gradient(180deg, rgba(2, 4, 9, 0.1), rgba(2, 4, 9, 0.56));
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+}
+
+.roleSpotlightCard {
+  position: relative;
+  width: min(390px, 100%);
+  display: grid;
+  grid-template-columns: 126px minmax(0, 1fr);
+  gap: 1rem;
+  padding: 1.1rem;
+  border-radius: 26px;
+  border: 1px solid color-mix(in srgb, var(--role-accent) 30%, rgba(255,255,255,0.08));
+  background: linear-gradient(180deg, rgba(10, 16, 27, 0.96), rgba(6, 9, 16, 0.98));
+  box-shadow: 0 22px 72px rgba(0, 0, 0, 0.42);
+  animation: spotlightIn 0.3s ease both;
+}
+
+.roleSpotlightClose {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(226, 232, 240, 0.82);
+  padding: 0.45rem 0.8rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.roleSpotlightImageFrame {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  min-height: 176px;
+}
+
+.roleSpotlightImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.roleSpotlightMeta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.roleSpotlightEyebrow {
+  color: color-mix(in srgb, var(--role-accent) 70%, white 18%);
+}
+
+.roleSpotlightName {
+  margin: 0.7rem 0 0;
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.roleSpotlightTitle {
+  margin: 0.55rem 0 0;
+  color: rgba(203, 213, 225, 0.82);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.roleSpotlightText {
+  margin: 0.8rem 0 0;
+  color: rgba(148, 163, 184, 0.78);
+  line-height: 1.55;
+  font-size: 0.9rem;
+}
+
+.workflowPanel {
+  position: relative;
+  width: min(980px, 100%);
+  min-height: auto;
+  margin: 0 auto;
+  aspect-ratio: auto;
+  padding: 1.5rem;
+  border-radius: 34px;
+  background: linear-gradient(180deg, rgba(11, 16, 28, 0.95), rgba(5, 7, 14, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.workflowPanel::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: 33px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent 18%, transparent 78%, rgba(103,232,249,0.03));
+  pointer-events: none;
+}
+
+.workflowPanelBody {
+  display: grid;
+  gap: 0.9rem;
+  animation: workflowSwap 0.28s ease both;
+}
+
+.workflowSummary {
+  padding: 1rem 1.1rem 1.1rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+}
+
+.workflowSummaryFull {
+  width: 100%;
+}
+
+.workflowSummaryInner {
+  padding: 0.85rem 0.2rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.workflowInfoGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas:
+    "roles skills"
+    "mode outputs";
+  gap: 0.9rem;
+  align-items: start;
+}
+
+.workflowBlock {
+  min-height: 0;
+  padding: 0.9rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.038), rgba(255, 255, 255, 0.018));
+  display: flex;
+  flex-direction: column;
+}
+
+.workflowRolesBlock {
+  grid-area: roles;
+}
+
+.workflowSkillsBlock {
+  grid-area: skills;
+}
+
+.workflowModeBlock {
+  grid-area: mode;
+}
+
+.workflowOutputsBlock {
+  grid-area: outputs;
+}
+
+.workflowTabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  padding-bottom: 0.85rem;
+}
+
+.workflowTab {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(226, 232, 240, 0.76);
+  border-radius: 999px;
+  padding: 0.62rem 0.9rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.workflowTab:hover {
+  transform: translateY(-1px);
+  color: white;
+}
+
+.workflowTabActive {
+  border-color: color-mix(in srgb, var(--workflow-accent) 60%, rgba(255,255,255,0.16));
+  background: color-mix(in srgb, var(--workflow-accent) 14%, rgba(255,255,255,0.03));
+  color: white;
+  box-shadow: 0 0 18px color-mix(in srgb, var(--workflow-accent) 14%, transparent);
+}
+
+.workflowTitle {
+  margin: 0;
+  font-size: 1.38rem;
+  line-height: 1.08;
+}
+
+.workflowSummaryText {
+  margin: 0.62rem 0 0;
+  color: rgba(203, 213, 225, 0.74);
+  line-height: 1.5;
+  font-size: 0.92rem;
+}
+
+.blockHeader {
+  margin-bottom: 0.72rem;
+  color: var(--workflow-accent);
+}
+
+.activeRoleChips {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.48rem;
+}
+
+.activeRoleChip {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+  padding: 0.45rem 0.52rem;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.activeRoleChip:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--role-accent) 32%, rgba(255,255,255,0.1));
+}
+
+.activeRoleChipSelected {
+  border-color: color-mix(in srgb, var(--role-accent) 46%, rgba(255,255,255,0.12));
+  background: color-mix(in srgb, var(--role-accent) 10%, rgba(255,255,255,0.03));
+  box-shadow: 0 0 18px color-mix(in srgb, var(--role-accent) 14%, transparent);
+}
+
+.activeRoleThumb {
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+  border-radius: 9px;
+  flex-shrink: 0;
+}
+
+.activeRoleText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.activeRoleName {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: white;
+}
+
+.activeRoleTitle {
+  font-size: 0.52rem;
+  color: rgba(148, 163, 184, 0.72);
+}
+
+.workflowModeCard {
+  padding: 0.8rem 0.82rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.02));
+  min-height: 108px;
+}
+
+.workflowModeLabel {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.72);
+}
+
+.workflowModeValue {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: white;
+}
+
+.workflowModeText {
+  margin: 0.48rem 0 0;
+  color: rgba(203, 213, 225, 0.66);
+  line-height: 1.4;
+  font-size: 0.76rem;
+}
+
+.skillsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.skillItem {
+  position: relative;
+  padding: 0.62rem 0.78rem 0.62rem 1.45rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  color: rgba(203, 213, 225, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.045);
+  font-size: 0.88rem;
+}
+
+.skillItem::before {
+  content: "";
+  position: absolute;
+  left: 0.62rem;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--workflow-accent);
+  transform: translateY(-50%);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--workflow-accent) 28%, transparent);
+}
+
+.outputGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+
+.outputCard {
+  min-height: 48px;
+  padding: 0.52rem 0.58rem;
+  border-radius: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02));
+  color: rgba(248, 250, 252, 0.9);
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1.16;
+  display: flex;
+  align-items: flex-start;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.outputCard:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--workflow-accent) 22%, rgba(255,255,255,0.1));
+}
+
+@keyframes hubOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes hubPulse {
+  from {
+    opacity: 0.5;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes workflowSwap {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spotlightIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 1200px) {
+  .container {
+    width: min(1240px, calc(100vw - 72px));
+  }
+
+  .section {
+    min-height: auto;
+  }
+
+  .roleMap {
+    min-height: 680px;
+    aspect-ratio: auto;
+  }
+
+  .workflowPanel {
+    min-height: 680px;
+    aspect-ratio: auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .workflowInfoGrid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "roles"
+      "skills"
+      "mode"
+      "outputs";
+  }
+
+  .activeRoleChips {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .section {
+    min-height: auto;
+    padding: 5rem 0 5.25rem;
+  }
+
+  .container {
+    width: calc(100vw - 32px);
+  }
+
+  .sectionHeader {
+    margin-bottom: 2.6rem;
+  }
+
+  .panelSupport {
+    font-size: 0.92rem;
+  }
+
+  .roleMap {
+    min-height: 620px;
+    aspect-ratio: auto;
+  }
+
+  .solutionHub {
+    width: 126px;
+    height: 126px;
+  }
+
+  .hubLabelTop {
+    font-size: 0.7rem;
+  }
+
+  .hubLabelBottom {
+    font-size: 0.86rem;
+  }
+
+  .roleNode {
+    width: 92px;
+    left: calc(var(--role-mobile-x) * 1%) !important;
+    top: calc(var(--role-mobile-y) * 1%) !important;
+  }
+
+  .roleThumbFrame {
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    padding: 5px;
+  }
+
+  .roleThumb {
+    border-radius: 12px;
+  }
+
+  .roleName {
+    font-size: 0.72rem;
+  }
+
+  .roleTitle {
+    display: none;
+  }
+
+  .roleSpotlight {
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .roleSpotlightCard {
+    grid-template-columns: 1fr;
+    width: min(420px, 100%);
+    padding-top: 3.2rem;
+  }
+
+  .roleSpotlightImageFrame {
+    min-height: 220px;
+  }
+
+  .workflowPanel {
+    width: 100%;
+    min-height: auto;
+    aspect-ratio: auto;
+    padding: 1.2rem;
+    border-radius: 24px;
+  }
+
+  .workflowTabs {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.15rem;
+  }
+
+  .workflowTabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .workflowTab {
+    white-space: nowrap;
+  }
+
+  .workflowInfoGrid,
+  .activeRoleChips,
+  .outputGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .workflowSummaryInner {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+
+
+

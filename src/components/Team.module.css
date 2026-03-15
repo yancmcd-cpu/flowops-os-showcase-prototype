@@ -1,0 +1,213 @@
+.teamSection {
+    background: var(--bg-surface);
+    border-top: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.header h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    align-items: start;
+}
+
+.card {
+    position: relative;
+    cursor: pointer;
+    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.activeCard {
+    cursor: default;
+    border-color: var(--accent-base);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
+    background: var(--bg-surface-light);
+}
+
+.cardContent {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.avatarWrapper {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.avatarImg {
+    object-fit: cover;
+}
+
+.info {
+    flex-grow: 1;
+}
+
+.info h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.roleLabel {
+    font-size: 0.875rem;
+    color: var(--accent-base);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.expandBtn {
+    background: transparent;
+    color: var(--text-tertiary);
+    border: none;
+    cursor: pointer;
+    transition: transform var(--transition-fast), color var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card:hover .expandBtn {
+    color: var(--text-primary);
+    transform: translateX(4px);
+}
+
+/* Expanded State Content */
+.activeContent {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+    padding-top: 0.5rem;
+}
+
+.closeBtn {
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+    background: transparent;
+    color: var(--text-secondary);
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all var(--transition-fast);
+}
+
+.closeBtn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    transform: scale(1.1);
+}
+
+.activeHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.largeAvatarWrapper {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--bg-card);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.avatarImgLarge {
+    object-fit: contain;
+}
+
+.roleLabelHighlight {
+    display: inline-block;
+    font-size: 0.75rem;
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--accent-base);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    margin-top: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.fullDescription {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+}
+
+.responsibilities h4 {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.responsibilities ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.responsibilities li {
+    position: relative;
+    padding-left: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+.responsibilities li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent-base);
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .header {
+        margin-bottom: 2rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .cardContent {
+        gap: 1rem;
+    }
+}
