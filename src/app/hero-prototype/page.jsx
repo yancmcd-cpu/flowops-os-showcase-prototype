@@ -2,8 +2,15 @@
 
 import { useEffect, useState } from "react";
 import Spline from "@splinetool/react-spline";
+import LanguageToggle from "@/components/LanguageToggle";
+import { useLanguage } from "@/components/LanguageContext";
 import Radar from "@/components/Radar";
+import RevealSection from "@/components/RevealSection";
+import FlowOpsFooter from "@/components/footer/FlowOpsFooter";
+import MissionControlSection from "@/components/mission-control/MissionControlSection";
+import KnowledgeVaultSection from "@/components/knowledge-vault/KnowledgeVaultSection";
 import SolutionDesignSection from "@/components/solution-design/SolutionDesignSection";
+import Gallery from "@/components/ui/gallery";
 import styles from "./page.module.css";
 
 function FlowOpsMark() {
@@ -91,7 +98,67 @@ const mobileSystemCards = [
     },
 ];
 
+const HERO_COPY = {
+    en: {
+        studio: "FLOWOPS STUDIO",
+        titleBase: "Agency",
+        titleOperating: "Operating",
+        titleSystem: "System",
+        description: "An intelligence system that detects opportunities, designs solutions, and orchestrates execution.",
+        outputEyebrow: "SYSTEM OUTPUT",
+    },
+    th: {
+        studio: "โฟลว์ออปส์ สตูดิโอ",
+        titleBase: "ระบบปฏิบัติการ",
+        titleOperating: "เอเจนซี",
+        titleSystem: "อัจฉริยะ",
+        description: "ระบบอัจฉริยะที่ตรวจจับโอกาส ออกแบบโซลูชัน และประสานการดำเนินงานให้เกิดผลลัพธ์",
+        outputEyebrow: "ผลลัพธ์ของระบบ",
+    },
+};
+
+const HERO_COPY_SAFE = {
+    en: {
+        studio: "FLOWOPS STUDIO",
+        titleBase: "Agency",
+        titleOperating: "Operating",
+        titleSystem: "System",
+        description: "An intelligence system that detects opportunities, designs solutions, and orchestrates execution.",
+        outputEyebrow: "SYSTEM OUTPUT",
+        loader: "INITIALIZING CORE",
+    },
+    th: {
+        studio: "FLOWOPS STUDIO",
+        titleBase: "ระบบ",
+        titleOperating: "ปฏิบัติการ",
+        titleSystem: "อัจฉริยะ",
+        description: "ระบบอัจฉริยะที่ตรวจจับโอกาส ออกแบบโซลูชัน และประสานการดำเนินงานให้เกิดผลลัพธ์",
+        outputEyebrow: "ผลลัพธ์ของระบบ",
+        loader: "กำลังเริ่มต้นคอร์",
+    },
+};
+
+const HERO_SYSTEM_CARDS = {
+    en: {
+        desktop: desktopSystemCards,
+        mobile: mobileSystemCards,
+    },
+    th: {
+        desktop: [
+            { title: "ตรวจพบสัญญาณ", status: "ระบุโอกาสแล้ว", color: "#06B6D4", glow: "rgba(6, 182, 212, 0.2)", left: "79%", top: "34%", delay: "0s" },
+            { title: "เลือกทักษะแล้ว", status: "ระบบกำลังประสานงาน", color: "#6366F1", glow: "rgba(99, 102, 241, 0.2)", left: "81%", top: "51%", delay: "4s" },
+            { title: "ส่งเข้าเวิร์กโฟลว์แล้ว", status: "กำลังดำเนินการ", color: "#10B981", glow: "rgba(16, 185, 129, 0.2)", left: "79%", top: "68%", delay: "8s" },
+        ],
+        mobile: [
+            { title: "ตรวจพบสัญญาณ", status: "ระบุโอกาสแล้ว", color: "#06B6D4", glow: "rgba(6, 182, 212, 0.2)", left: "60%", top: "34%", delay: "0s" },
+            { title: "เลือกทักษะแล้ว", status: "ระบบกำลังประสานงาน", color: "#6366F1", glow: "rgba(99, 102, 241, 0.2)", left: "60%", top: "48%", delay: "4s" },
+            { title: "ส่งเข้าเวิร์กโฟลว์แล้ว", status: "กำลังดำเนินการ", color: "#10B981", glow: "rgba(16, 185, 129, 0.2)", left: "60%", top: "61%", delay: "8s" },
+        ],
+    },
+};
+
 export default function FlowOpsPage() {
+    const { language } = useLanguage();
     const [mounted, setMounted] = useState(false);
     const [isCoreLoaded, setIsCoreLoaded] = useState(false);
     const [isSystemActive, setIsSystemActive] = useState(false);
@@ -129,7 +196,8 @@ export default function FlowOpsPage() {
         setTimeout(() => setIsSystemActive(true), 800);
     };
 
-    const systemCards = isMobile ? mobileSystemCards : desktopSystemCards;
+    const systemCards = isMobile ? HERO_SYSTEM_CARDS[language].mobile : HERO_SYSTEM_CARDS[language].desktop;
+    const heroCopy = HERO_COPY_SAFE[language];
 
     return (
         <>
@@ -182,7 +250,8 @@ export default function FlowOpsPage() {
                 }}
             />
 
-            <main style={{ position: "relative", width: "100vw", background: "#010204", color: "white", fontFamily: "Inter, sans-serif", overflowX: "hidden" }}>
+            <main className={styles.pageMain}>
+                <LanguageToggle />
                 <section id="hero-top" className={styles.heroSection}>
                     <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 1, overflow: "hidden" }}>
                         {mounted && (
@@ -215,17 +284,17 @@ export default function FlowOpsPage() {
                         <div className={styles.heroCopy}>
                             <div className={styles.heroEyebrowRow}>
                                 <FlowOpsMark />
-                                <p className={styles.heroEyebrow}>FLOWOPS STUDIO</p>
+                                <p className={styles.heroEyebrow}>{heroCopy.studio}</p>
                             </div>
                             <h1 className={styles.heroTitle}>
-                                <span className={styles.heroTitleBase}>Agency</span>
+                                <span className={styles.heroTitleBase}>{heroCopy.titleBase}</span>
                                 <span className={styles.heroTitleCluster}>
                                     <div style={{ position: "absolute", left: "36%", top: "54%", width: "112%", height: "128%", background: "radial-gradient(circle, rgba(59, 130, 246, 0.34) 0%, rgba(99, 102, 241, 0.22) 42%, transparent 76%)", filter: "blur(38px)", animation: isSystemActive ? "textGlowBloom 4s ease-in-out infinite" : "none", zIndex: -1, transform: "translate(-50%, -50%)", pointerEvents: "none" }} />
-                                    <span className={styles.heroTitleAccent} style={{ animation: isSystemActive ? "textMetallicFlare 4s ease-in-out infinite" : "none" }}>Operating</span>
-                                    <span className={styles.heroTitleAccentTight} style={{ animation: isSystemActive ? "textMetallicFlare 4s ease-in-out infinite" : "none" }}>System</span>
+                                    <span className={styles.heroTitleAccent} style={{ animation: isSystemActive ? "textMetallicFlare 4s ease-in-out infinite" : "none" }}>{heroCopy.titleOperating}</span>
+                                    <span className={styles.heroTitleAccentTight} style={{ animation: isSystemActive ? "textMetallicFlare 4s ease-in-out infinite" : "none" }}>{heroCopy.titleSystem}</span>
                                 </span>
                             </h1>
-                            <p className={styles.heroDescription}>An intelligence system that detects opportunities, designs solutions, and orchestrates execution.</p>
+                            <p className={styles.heroDescription}>{heroCopy.description}</p>
                         </div>
 
                         <div className={styles.heroVisual}>
@@ -250,7 +319,7 @@ export default function FlowOpsPage() {
                                         >
                                             <div className={styles.systemCardShell}>
                                                 <div className={styles.systemCardHeader}>
-                                                    <span className={styles.systemCardEyebrow}>SYSTEM OUTPUT</span>
+                                                    <span className={styles.systemCardEyebrow}>{heroCopy.outputEyebrow}</span>
                                                     <div className={styles.systemCardDot} style={{ background: card.color, boxShadow: `0 0 10px ${card.color}` }} />
                                                 </div>
                                                 <div className={styles.systemCardTitle}>{card.title}</div>
@@ -264,7 +333,7 @@ export default function FlowOpsPage() {
                             {showLoader && (
                                 <div className={styles.loader}>
                                     <div style={{ width: "45px", height: "45px", border: "3px solid rgba(255,255,255,0.05)", borderTopColor: "#3B82F6", borderRadius: "50%", animation: "activeCoreSpin 0.8s linear infinite", margin: "0 auto 15px" }} />
-                                    <p style={{ fontSize: "0.7rem", letterSpacing: "0.3em", opacity: 0.4, fontWeight: 600 }}>INITIALIZING CORE</p>
+                                    <p style={{ fontSize: "0.7rem", letterSpacing: "0.3em", opacity: 0.4, fontWeight: 600 }}>{heroCopy.loader}</p>
                                 </div>
                             )}
                         </div>
@@ -329,7 +398,7 @@ export default function FlowOpsPage() {
                                 >
                                     <div className={styles.systemCardShell}>
                                         <div className={styles.systemCardHeader}>
-                                            <span className={styles.systemCardEyebrow}>SYSTEM OUTPUT</span>
+                                            <span className={styles.systemCardEyebrow}>{heroCopy.outputEyebrow}</span>
                                             <div className={styles.systemCardDot} style={{ background: card.color, boxShadow: `0 0 10px ${card.color}` }} />
                                         </div>
                                         <div className={styles.systemCardTitle}>{card.title}</div>
@@ -343,21 +412,23 @@ export default function FlowOpsPage() {
                     <div className={styles.heroMask} />
                 </section>
 
-                <div id="radar" style={{ minHeight: "120vh", borderTop: "1px solid rgba(255,255,255,0.05)", background: "#010204", position: "relative", zIndex: 2 }}>
-                    <Radar />
-                </div>
+                <RevealSection>
+                    <div id="radar" style={{ position: "relative", zIndex: 2 }}>
+                        <Radar />
+                    </div>
+                </RevealSection>
 
                 <SolutionDesignSection />
 
-                <section id="ops" style={{ height: "120vh", padding: "20vh 25vw 20vh 380px", background: "#010204", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-                    <h2 style={{ fontSize: "0.8rem", color: "#10B981", letterSpacing: "0.4em", marginBottom: "30px", textTransform: "uppercase" }}>04 // Automation + Implementation</h2>
-                    <p style={{ fontSize: "4.5rem", fontWeight: 200, lineHeight: 1.1 }}>Execution Engine <br /><span style={{ opacity: 0.3 }}>Swarm Orchestration.</span></p>
-                </section>
+                <RevealSection>
+                    <Gallery />
+                </RevealSection>
 
-                <section id="refine" style={{ height: "120vh", padding: "20vh 25vw 20vh 380px", background: "linear-gradient(180deg, #010204, #080c14)", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-                    <h2 style={{ fontSize: "0.8rem", color: "#F59E0B", letterSpacing: "0.4em", marginBottom: "30px", textTransform: "uppercase" }}>05 // Continuous Improvement</h2>
-                    <p style={{ fontSize: "4.5rem", fontWeight: 200, lineHeight: 1.1 }}>Recursive Loop <br /><span style={{ opacity: 0.3 }}>Continuous Optimization.</span></p>
-                </section>
+                <MissionControlSection />
+
+                <KnowledgeVaultSection />
+
+                <FlowOpsFooter />
             </main>
         </>
     );

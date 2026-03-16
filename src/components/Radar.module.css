@@ -1,8 +1,8 @@
-﻿.radarSection {
+.radarSection {
     position: relative;
     overflow: hidden;
     padding: 5.2rem 0 4.8rem;
-    background: #000;
+    background: linear-gradient(180deg, #010204 0%, #010204 100%);
     border-top: none;
     --color-growth: #10b981;
     --color-conversion: #06b6d4;
@@ -12,6 +12,8 @@
 
 .containerExt {
     max-width: 1380px;
+    position: relative;
+    z-index: 1;
 }
 
 .header {
@@ -734,25 +736,67 @@
     }
 
     .nodesWrapper {
+        width: min(100%, 340px);
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         justify-content: center;
+        gap: 0.7rem;
     }
 
     .sourceNode {
+        width: 100%;
+        justify-content: center;
         font-size: 0.72rem;
+        padding: 0.52rem 0.7rem;
+        text-align: center;
     }
 
     .mainSystemPane {
+        width: 100%;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        align-items: start;
+        transform: none;
         gap: 1.2rem;
     }
 
     .signalColumn,
     .cardColumn {
+        width: 100%;
         max-width: min(100%, 420px);
+        margin: 0 auto;
+        justify-self: center;
+    }
+
+    .radarCoreWrap {
+        order: 1;
+        width: 100%;
+        min-width: 0;
+        height: auto;
+        margin: 0 auto;
+        justify-self: center;
+    }
+
+    .signalColumn {
+        order: 2;
+    }
+
+    .cardColumn {
+        order: 3;
+    }
+
+    .signalCardShell,
+    .opportunityCardContainer {
+        width: 100%;
     }
 
     .radarCore {
-        width: 280px;
-        height: 280px;
+        width: min(280px, calc(100vw - 84px)) !important;
+        min-width: min(280px, calc(100vw - 84px));
+        height: min(280px, calc(100vw - 84px)) !important;
+        min-height: min(280px, calc(100vw - 84px));
+        flex: 0 0 auto;
+        margin: 0 auto;
     }
 
     .ring1 {
@@ -775,7 +819,35 @@
     }
 
     .opportunityCardContainer {
-        min-height: 320px;
+        min-height: 388px;
+    }
+
+    .ideaHeader {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .tagScore {
+        align-self: flex-start;
+    }
+
+    .ideaCard {
+        padding: 1rem 1rem 1.05rem;
+    }
+
+    .cardDetails {
+        gap: 0.72rem;
+        justify-content: flex-start;
+    }
+
+    .cardSection {
+        padding: 0.72rem 0.76rem;
+    }
+
+    .cardInsight,
+    .cardSystem {
+        font-size: 0.86rem;
+        line-height: 1.54;
     }
 }
 
@@ -954,6 +1026,141 @@
     flex: 0 0 360px;
     border-radius: 50%;
 }
+
+@media (max-width: 760px) {
+    .mainSystemPane {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 1.2rem !important;
+        justify-items: center !important;
+        align-items: start !important;
+        transform: none !important;
+    }
+
+    .radarCoreWrap {
+        order: 1 !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        height: auto !important;
+        margin: 0 auto !important;
+        justify-self: center !important;
+    }
+
+    .signalColumn {
+        order: 2 !important;
+    }
+
+    .cardColumn {
+        order: 3 !important;
+    }
+
+    .signalColumn,
+    .cardColumn {
+        width: 100% !important;
+        max-width: min(100%, 420px) !important;
+        margin: 0 auto !important;
+        justify-self: center !important;
+    }
+
+    .signalColumn {
+        max-width: min(100%, 320px) !important;
+    }
+
+    .signalCardShell,
+    .opportunityCardContainer {
+        width: 100% !important;
+    }
+
+    .signalCardShell {
+        min-height: 176px !important;
+    }
+
+    .opportunityCardContainer {
+        min-height: 388px !important;
+    }
+
+    .radarCore {
+        width: min(280px, calc(100vw - 84px)) !important;
+        min-width: min(280px, calc(100vw - 84px)) !important;
+        height: min(280px, calc(100vw - 84px)) !important;
+        min-height: min(280px, calc(100vw - 84px)) !important;
+        flex: 0 0 auto !important;
+        margin: 0 auto !important;
+    }
+
+    .ideaHeader {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+
+    .tagScore {
+        align-self: flex-start !important;
+    }
+
+    .nodesWrapper {
+        width: min(100%, 340px) !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 0.7rem !important;
+    }
+
+    .sourceNode {
+        width: 100% !important;
+        justify-content: center !important;
+        text-align: center !important;
+        padding: 0.52rem 0.7rem !important;
+    }
+
+    .signalCard {
+        padding: 0.82rem 0.82rem 0.78rem !important;
+    }
+
+    .feedHeader {
+        margin-bottom: 0.62rem !important;
+        font-size: 0.62rem !important;
+    }
+
+    .signalItemHeader {
+        gap: 0.35rem !important;
+        margin-bottom: 0.48rem !important;
+    }
+
+    .signalSource {
+        font-size: 0.62rem !important;
+    }
+
+    .signalTypeBadge {
+        padding: 0.2rem 0.44rem !important;
+        font-size: 0.56rem !important;
+    }
+
+    .signalText {
+        font-size: 0.74rem !important;
+        line-height: 1.46 !important;
+    }
+
+    .ideaCard {
+        padding: 1rem 1rem 1.05rem !important;
+    }
+
+    .cardDetails {
+        justify-content: flex-start !important;
+        gap: 0.72rem !important;
+    }
+
+    .cardSection {
+        padding: 0.72rem 0.76rem !important;
+    }
+
+    .cardInsight,
+    .cardSystem {
+        font-size: 0.86rem !important;
+        line-height: 1.54 !important;
+    }
+}
+
+
 
 
 

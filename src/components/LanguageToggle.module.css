@@ -1,50 +1,78 @@
 .toggle {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
+    position: fixed;
+    top: 1.25rem;
+    right: 1.25rem;
     display: flex;
     align-items: center;
-    background: var(--bg-glass);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-full);
-    padding: 0.25rem 0.5rem;
-    backdrop-filter: blur(10px);
-    cursor: pointer;
-    z-index: 50;
-    transition: all 0.2s ease;
+    gap: 0.1rem;
+    background: rgba(7, 10, 18, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    padding: 0.26rem;
+    backdrop-filter: blur(16px);
+    z-index: 120;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    box-shadow:
+        0 14px 30px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .toggle:hover {
-    border-color: rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(103, 232, 249, 0.18);
+    background: rgba(10, 15, 26, 0.82);
+    transform: translateY(-1px);
 }
 
 .option {
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-    padding: 0.25rem 0.5rem;
-    border-radius: var(--radius-full);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.38rem;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: rgba(203, 213, 225, 0.68);
+    padding: 0.48rem 0.78rem;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
     transition: all 0.2s ease;
-    opacity: 0.6;
+    opacity: 0.78;
+    cursor: pointer;
 }
 
 .active {
-    color: var(--text-primary);
+    color: #f8fbff;
     opacity: 1;
-    background: rgba(255, 255, 255, 0.1);
+    background:
+        linear-gradient(180deg, rgba(34, 211, 238, 0.16), rgba(99, 102, 241, 0.1)),
+        rgba(255, 255, 255, 0.06);
+    box-shadow:
+        0 0 20px rgba(34, 211, 238, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .divider {
     width: 1px;
-    height: 12px;
-    background: var(--border-color);
-    margin: 0 0.25rem;
+    height: 16px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 0 0.12rem;
+}
+
+.flag {
+    font-size: 0.9rem;
+    line-height: 1;
 }
 
 @media (max-width: 768px) {
     .toggle {
-        top: 1rem;
-        right: 1rem;
+        top: 0.85rem;
+        right: 0.85rem;
+        padding: 0.22rem;
+    }
+
+    .option {
+        padding: 0.42rem 0.64rem;
+        font-size: 0.68rem;
+        gap: 0.3rem;
     }
 }
